@@ -18,10 +18,8 @@
     "build:modern": "rollup -c ./scripts/rollup/rollup.config.js",
     "build:esm": "rollup -c ./scripts/rollup/rollup.esm.config.js",
     "prettier:fix": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx,css}\"",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "lint:fix": "yarn lint -- --fix",
     "type": "tsc --noEmit",
-    "prepublishOnly": "yarn && yarn lint:fix && yarn type && yarn build"
+    "prepublishOnly": "yarn && yarn type && yarn build"
   },
   "bin": {
     "openapi-generator": "dist/bin/openapi-generator.cjs.js"
