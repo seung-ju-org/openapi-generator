@@ -1,0 +1,59 @@
+{
+  "name": "@seung-ju/openapi-generator",
+  "version": "0.0.1",
+  "main": "dist/bin/openapi-generator.cjs.js",
+  "module": "dist/bin/openapi-generator.esm.mjs",
+  "umd:main": "dist/bin/openapi-generator.umd.js",
+  "unpkg": "dist/bin/openapi-generator.umd.js",
+  "jsdelivr": "dist/bin/openapi-generator.umd.js",
+  "jsnext:main": "dist/bin/openapi-generator.esm.mjs",
+  "source": "src/openapi-generator.ts",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "yarn clean",
+    "build": "yarn build:modern",
+    "dev": "tsx src/create-interface.ts",
+    "postbuild": "node ./scripts/rollup/assert-esm-exports.mjs && node ./scripts/rollup/assert-cjs-exports.cjs",
+    "build:modern": "rollup -c ./scripts/rollup/rollup.config.js",
+    "build:esm": "rollup -c ./scripts/rollup/rollup.esm.config.js",
+    "prettier:fix": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx,css}\"",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint:fix": "yarn lint -- --fix",
+    "type": "tsc --noEmit",
+    "prepublishOnly": "yarn && yarn lint:fix && yarn type && yarn build"
+  },
+  "bin": {
+    "openapi-generator": "dist/bin/openapi-generator.cjs.js"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/bin/openapi-generator.d.ts",
+      "import": "./dist/bin/openapi-generator.esm.mjs",
+      "require": "./dist/bin/openapi-generator.cjs.js"
+    }
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@types/node": "^20.12.8",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "rollup": "^2.79.1",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.9.3",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": "^20"
+  },
+  "packageManager": "yarn@1.22.22"
+}
