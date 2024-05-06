@@ -1,6 +1,6 @@
 {
   "name": "@seung-ju/openapi-generator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/bin/openapi-generator.cjs.js",
   "module": "dist/bin/openapi-generator.esm.mjs",
   "umd:main": "dist/bin/openapi-generator.umd.js",
@@ -13,7 +13,7 @@
     "clean": "rimraf dist",
     "prebuild": "yarn clean",
     "build": "yarn build:modern",
-    "dev": "tsx src/create-interface.ts",
+    "dev": "tsx src/openapi-generator.ts",
     "postbuild": "node ./scripts/rollup/assert-esm-exports.mjs && node ./scripts/rollup/assert-cjs-exports.cjs",
     "build:modern": "rollup -c ./scripts/rollup/rollup.config.js",
     "build:esm": "rollup -c ./scripts/rollup/rollup.esm.config.js",

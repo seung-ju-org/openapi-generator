@@ -12,7 +12,8 @@ export interface PackageJson {
 }
 
 (async () => {
-  const config = fs.readFileSync('./openapi.config.js', 'utf8');
+  // @ts-ignore
+  const config = await import(process.cwd() + '/openapi.config.js');
 
   if (fs.existsSync(openapiPath)) {
     await rimraf(openapiPath);
